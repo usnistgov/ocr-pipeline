@@ -22,6 +22,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.pynative
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -55,3 +56,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# IDE folders
+/.project
+/.idea
+
+# App directories
+conf
+logs
+tmp

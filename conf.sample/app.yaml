@@ -1,0 +1,49 @@
+root: /path/to/pipeline
+use_sudo: false
+dirs:
+    input: data.in
+    output: data.out
+    temp: tmp
+    logs: logs
+    models_root: models
+    models:
+        learning: machine_learning
+        inline: inline_correction
+log_conf: logging.yaml
+machines: machines.yaml
+commands:
+   tries: 3
+   list:
+        -   PDFConverter:
+               density: 300
+               depth: 8
+               quality: 100
+        -   PNGReader:
+               ocropy:
+                   location: /path/to/ocropy
+                   model: models/en-default.pyrnn.gz
+               #commands:
+               #     - ocropus-nlbin
+               #     - ocropus-gpageseg
+               #     - ocropus-rpred
+        -   TXTDenoiser
+redis:
+    port: 6379
+exts:
+    tmp: .bin
+    garbage: .grbge.txt
+    clean: .clean.txt
+    unclassified: .noclass.txt
+models:
+    aspell_dict: aspell.en.dict
+    hashes: hash_list.bin
+    learning:
+        training_set: training.bin
+        classifier: model.bin
+    inline:
+        unigrams: unigrams.bin
+        bigrams: bigrams.bin
+        altcase: altcase.bin
+        ocr_keys: ocrkeys.bin
+        anagrams: anagrams.bin
+        dictionary: dictionary.bin
