@@ -1,11 +1,14 @@
 # apputils
 
+**Author:** Philippe Dessauw, philippe.dessauw@nist.gov
+**Contact:** Alden Dima, alden.dima@nist.gov
+
 -----
 
-This Python package contains some useful functions that can be easily reused inside every Python project. It covers:
+This Python package contains useful functions that can be easily reused inside a Python projects. It offers:
 
-* Configuring your app using Yaml files,
-* Zipping and unizipping directories on the fly,
+* App Configuration using YAML files,
+* Zipping and unzipping directories on the fly,
 * Storing and retrieving Python objects.
 
 ## Installation
@@ -15,15 +18,15 @@ This Python package contains some useful functions that can be easily reused ins
 	$> cd /path/to/apputils
 	$> python setup.py sdist
 
-You should now see that a **dist** package appeared in the main directory.
+You should now see **dist** package in the main directory.
 
 ### Installing the package
 
 	$> cd path/to/apputils/dist
 	$> pip install apputils-*version*.tar.gz
 
-You can now use this package to its full extent!
+This package is now ready to use!
 
 ## Contact
 
-If you have any questions, comments or suggestions about this package, please send an e-mail to philippe(dot)dessauw(at)nist(dot)gov.
+If you have any questions, comments or suggestions about this repository, please send an e-mail to Alden Dima (alden.dima@nist.gov).
