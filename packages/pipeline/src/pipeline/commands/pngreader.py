@@ -1,4 +1,17 @@
 """Package to convert PNG to TXT
+
+.. Authors:
+    Philippe Dessauw
+    philippe.dessauw@nist.gov
+
+.. Sponsor:
+    Alden Dima
+    alden.dima@nist.gov
+    Information Systems Group
+    Software and Systems Division
+    Information Technology Laboratory
+    National Institute of Standards and Technology
+    http://www.nist.gov/itl/ssd/is
 """
 from os.path import join, isdir, split, dirname, basename, splitext, isfile
 from subprocess import check_output, STDOUT

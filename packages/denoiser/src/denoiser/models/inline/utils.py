@@ -1,4 +1,17 @@
-"""Utilitaries for inline denoising
+"""Utilities for inline denoising
+
+.. Authors:
+    Philippe Dessauw
+    philippe.dessauw@nist.gov
+
+.. Sponsor:
+    Alden Dima
+    alden.dima@nist.gov
+    Information Systems Group
+    Software and Systems Division
+    Information Technology Laboratory
+    National Institute of Standards and Technology
+    http://www.nist.gov/itl/ssd/is
 """
 from hashlib import md5
 from collections import Counter
