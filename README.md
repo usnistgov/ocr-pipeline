@@ -1,6 +1,7 @@
 # OCR Pipeline
 
 **Author:** Philippe Dessauw, philippe.dessauw@nist.gov
+
 **Contact:** Alden Dima, alden.dima@nist.gov
 
 -----
@@ -20,7 +21,8 @@ The pipeline is running on a distributed master/slave architecture with a *Redis
 
 The software is developed by the National Institute of Standards and Technology (NIST).
 
-*N.B.:* This software has exclusively been designed to be run on **Linux servers**. Execution on Mac and Windows has not been tested.
+*N.B.:* This software has exclusively been designed to be run on **Linux servers**. Execution on Mac and Windows has not 
+been tested.
 
 
 ## Prerequisites
@@ -35,7 +37,8 @@ The pipeline is developed in *Python2* (>=2.7). You can check your version using
 
 #### Virtual environment
 
-We recommend using a Python virtual environment to ensure proper operation of the pipeline. Make sure your environment is activated at installation time.
+We recommend using a Python virtual environment to ensure proper operation of the pipeline. Make sure your environment 
+is activated at installation time.
 
 #### Packages
 
@@ -43,27 +46,33 @@ There are two package that needed to be installed before installing the pipeline
 
 ##### pip
 
-This package will be used to install the packages bundled in this repository and their dependancies. No manual action is required to install dependancies.
+This package will be used to install the packages bundled in this repository and their dependancies. No manual action is 
+required to install dependancies.
 
 ##### PythonMagick
 
-This package needs to be manually installed. Its version is heavily dependent on your **ImageMagick** version. Please visit http://www.imagemagick.org for more information.
+This package needs to be manually installed. Its version is heavily dependent on your **ImageMagick** version. Please 
+visit http://www.imagemagick.org for more information.
 
 ### Redis
 
-Redis needs to be installed on the master server. Redis version should be **>= 2.7**. Follow Redis installation steps at http://redis.io/download#installation.
+Redis needs to be installed on the master server. Redis version should be **>= 2.7**. Follow Redis installation steps at 
+http://redis.io/download#installation.
 
 ### Ocropy
 
-Ocropy is required to convert images to text files. The code is available at https://github.com/tmbdev/ocropy. Make sure it is downloaded and can be launched on all your slaves.
+Ocropy is required to convert images to text files. The code is available at https://github.com/tmbdev/ocropy. Make sure 
+it is downloaded and can be launched on all your slaves.
 
 ### XServer
 
-The command `xvfb-run` should be available for our scripts. Depending on your operating system, it is not always stored in the same package. Please refer to your OS package manager to download it.
+The command `xvfb-run` should be available for our scripts. Depending on your operating system, it is not always stored 
+in the same package. Please refer to your OS package manager to download it.
 
 ### NLTK
 
-In order for NLTK to run properly, you need to download the **english tokenizer**. The following python code will check your NLTK installation and get the tokenizer if it is not present:
+In order for NLTK to run properly, you need to download the **english tokenizer**. The following python code will check 
+your NLTK installation and get the tokenizer if it is not present:
 
 	import nltk
 	
@@ -124,7 +133,8 @@ Path of your virtual environment. Comment this line if not needed.
 
 #### master
 
-The IP address of the master is in the form of a connection string. It is formatted as a list but only the first element is relevant.
+The IP address of the master is in the form of a connection string. It is formatted as a list but only the first element 
+is relevant.
 
 #### slaves
 
@@ -160,19 +170,24 @@ Here are the steps you have to follow to install the pipeline on your architectu
 
 ### Incoming data
 
-When you want to start converting a corpus of PDF files, you have to place the files in the input directory. By default, this directory is named *data.in*.
+When you want to start converting a corpus of PDF files, you have to place the files in the input directory. By default, 
+this directory is named *data.in*.
 
 ### Starting the pipeline
 
-To start the pipeline, you just have to run `./ui.sh -r start_pipeline`. It will remotely start all the slaves and the master. 
+To start the pipeline, you just have to run `./ui.sh -r start_pipeline`. It will remotely start all the slaves and the 
+master. 
 
 ### Output
 
-Each time a new file has been processed, it will be put in the output directory of the master server. By default, this directory is named *data.out*.
+Each time a new file has been processed, it will be put in the output directory of the master server. By default, this 
+directory is named *data.out*.
 
 ## Contact
 
-If you encouter any issue or bug with this software please use the [issue tracker](https://github.com/usnistgov/ocr-pipeline/issues). If you want to make some enhancement, feel free to fork this repository and submit a pull request once your new feature is ready.
+If you encouter any issue or bug with this software please use the [issue tracker](https://github.com/usnistgov/ocr-pipeline/issues). 
+If you want to make some enhancement, feel free to fork this repository and submit a pull request once your new feature 
+is ready.
 
-If you have any questions, comments or suggestions about this repository, please send an e-mail to Alden Dima (alden.dima@nist.gov).
-
+If you have any questions, comments or suggestions about this repository, please send an e-mail to Alden Dima 
+(alden.dima@nist.gov).

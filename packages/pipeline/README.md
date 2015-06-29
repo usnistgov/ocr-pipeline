@@ -1,6 +1,7 @@
 # pipeline
 
 **Author:** Philippe Dessauw, philippe.dessauw@nist.gov
+
 **Contact:** Alden Dima, alden.dima@nist.gov
 
 -----
@@ -25,4 +26,5 @@ This package is now ready to use!
 
 ## Contact
 
-If you have any questions, comments or suggestions about this repository, please send an e-mail to Alden Dima (alden.dima@nist.gov).
+If you have any questions, comments or suggestions about this repository, please send an e-mail to Alden Dima 
+(alden.dima@nist.gov).
