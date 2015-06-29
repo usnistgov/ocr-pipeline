@@ -1,6 +1,19 @@
 #!/bin/bash
-# Testing ocropy
+### Testing ocropy
 #
+# Authors:
+#   Philippe Dessauw
+#   philippe.dessauw@nist.gov
+#
+# Sponsor:
+#   Alden Dima
+#   alden.dima@nist.gov
+#   Information Systems Group
+#   Software and Systems Division
+#   Information Technology Laboratory
+#   National Institute of Standards and Technology
+#   http://www.nist.gov/itl/ssd/is
+###
 source $(dirname $0)/../env.sh
 TMP_DIRNAME=`get_value_for_key dirs/temp` || nok
 TMP_DIR="${ROOT}/${TMP_DIRNAME}"

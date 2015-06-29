@@ -1,6 +1,19 @@
 #!/bin/bash
-# Automatically install all the necessary packages to run the pipeline
+### Automatically install all the necessary packages to run the pipeline
 #
+# Authors:
+#   Philippe Dessauw
+#   philippe.dessauw@nist.gov
+#
+# Sponsor:
+#   Alden Dima
+#   alden.dima@nist.gov
+#   Information Systems Group
+#   Software and Systems Division
+#   Information Technology Laboratory
+#   National Institute of Standards and Technology
+#   http://www.nist.gov/itl/ssd/is
+###
 source $(dirname $0)/env.sh
 
 pkgs=("apputils" "denoiser" "pipeline")

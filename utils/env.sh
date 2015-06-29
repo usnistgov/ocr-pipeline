@@ -1,8 +1,22 @@
 #!/bin/bash
-# Store basic information about the environment
+### Store basic information about the environment
+#
 # Can be called from any script using:
 #   >   source path/to/env.sh
 #
+# Authors:
+#   Philippe Dessauw
+#   philippe.dessauw@nist.gov
+#
+# Sponsor:
+#   Alden Dima
+#   alden.dima@nist.gov
+#   Information Systems Group
+#   Software and Systems Division
+#   Information Technology Laboratory
+#   National Institute of Standards and Technology
+#   http://www.nist.gov/itl/ssd/is
+###
 
 # Defining fonctions
 function parse_yaml {

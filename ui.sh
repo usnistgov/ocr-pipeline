@@ -1,6 +1,19 @@
 #!/bin/bash
-# Script interacting w/ the pipeline. Same script work for remote and local access.
+### Script interacting w/ the pipeline. Same script work for remote and local access.
 #
+# Authors:
+#   Philippe Dessauw
+#   philippe.dessauw@nist.gov
+#
+# Sponsor:
+#   Alden Dima
+#   alden.dima@nist.gov
+#   Information Systems Group
+#   Software and Systems Division
+#   Information Technology Laboratory
+#   National Institute of Standards and Technology
+#   http://www.nist.gov/itl/ssd/is
+###
 source $(dirname $0)/utils/env.sh
 
 contains() {
