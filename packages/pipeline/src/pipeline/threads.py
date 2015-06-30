@@ -25,7 +25,14 @@ class StoppableThread(Thread):
         self.stop_event = Event()
 
     def is_stopped(self):
+        """Test if a thread is stopped
+
+        Returns
+            bool: True if stopped, False otherwise
+        """
         return self.stop_event.isSet()
 
     def stop(self):
+        """Stop the thread
+        """
         self.stop_event.set()

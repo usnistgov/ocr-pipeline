@@ -35,6 +35,8 @@ class PNGReader(Command):
         self.logger.info("PNG reader initialized")
 
     def execute(self):
+        """Execute the command
+        """
         self.logger.debug("::: PNG reading :::")
         super(PNGReader, self).get_file()
 
@@ -98,5 +100,7 @@ class PNGReader(Command):
         return 0
 
     def finalize(self):
+        """Finalize the job
+        """
         super(PNGReader, self).store_file()
         self.logger.debug("::: PNG reading (END) :::")

@@ -29,6 +29,8 @@ class TXTDenoiser(Command):
         self.denoiser = Denoiser(config)
 
     def execute(self):
+        """Execute the command
+        """
         try:
             self.logger.debug("::: Text cleaning :::")
             super(TXTDenoiser, self).get_file()
@@ -72,5 +74,7 @@ class TXTDenoiser(Command):
         return 0
 
     def finalize(self):
+        """Finalize the job
+        """
         super(TXTDenoiser, self).store_file()
         self.logger.debug("::: Text cleaning (END) :::")

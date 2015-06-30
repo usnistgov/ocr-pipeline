@@ -33,12 +33,19 @@ class Statistics(object):
         logging.debug("Statistics initialized")
 
     def set_stat(self, name, value):
+        """Add a new stat to the model
+        """
         if name not in self.stats:
             raise KeyError("Key '"+name+"' does not exists")
 
         self.stats[name] = value
 
     def get_stat(self, name):
+        """Return a statistic value
+
+        Returns:
+            float: Value of the stat
+        """
         if name not in self.stats:
             raise KeyError("Key '"+name+"' does not exists")
 

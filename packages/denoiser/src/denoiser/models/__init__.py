@@ -44,6 +44,14 @@ class AbstractModel(object):
             self.hash_list = load(self.hash_filename)
 
     def is_preprocessed(self, filename):
+        """Determine if the given file has already been preprocessed (its data added to the models)
+
+        Args:
+            filename (str): Path of the given file
+
+        Returns:
+            int: 0 if not preprocess, 1 otherwise
+        """
         text_id = file_checksum(filename)
 
         if text_id not in self.hash_list:
@@ -54,9 +62,25 @@ class AbstractModel(object):
         return 1
 
     def load(self, text_data):
+        """Load text data to the model
+
+        Args:
+            text_data (dict): Text data
+
+        Raise:
+            NotImplementedError: Not yet implemented
+        """
         raise NotImplementedError()
 
     def correct(self, text_data):
+        """Save text data to the model
+
+        Args:
+            text_data (dict): Text data
+
+        Raise:
+            NotImplementedError: Not yet implemented
+        """
         raise NotImplementedError()
 
 
@@ -88,6 +112,11 @@ class InlineModel(AbstractModel):
         self.anagram_map = AnagramMap(join(inline_models_dir, inline_models_key["anagrams"]))
 
     def load(self, text_data):
+        """Load text data to the model
+
+        Args:
+            text_data (dict): Text data
+        """
         if self.is_preprocessed(text_data.filename) != 0:
             self.logger.debug(text_data.filename+" already loaded: skipping it.")
             return
@@ -127,6 +156,11 @@ class InlineModel(AbstractModel):
         self.logger.info(text_data.filename+"'s datastructures loaded")
 
     def correct(self, text_data):
+        """Correct text data
+
+        Args:
+            text_data (dict): Text data
+        """
         correction_data = self.correction_data()
 
         for paragraph in text_data.text:
@@ -169,6 +203,11 @@ class InlineModel(AbstractModel):
                         token[2] = {tkn: token[2][tkn] for tkn in tkn_list}
 
     def correction_data(self):
+        """Get the correction data
+
+        Returns:
+            dict: Correction data
+        """
         return {
             "occurence_map": self.unigrams.ngrams + self.bigrams.ngrams,
             "altcase": self.altcase_map.altcase_map,
@@ -192,10 +231,20 @@ class IndicatorModel(AbstractModel):
         }
 
     def load(self, text_data):
+        """Load text data to the model
+
+        Args:
+            text_data (dict): Text data
+        """
         for indicator_list in self.model.values():
             indicator_list.set_stats(text_data.stats)
 
     def correct(self, text_data):
+        """Correct text data
+
+        Args:
+            text_data (dict): Text data
+        """
         # =======================
         # Strong indicators
         # =======================
@@ -246,6 +295,11 @@ class MachineLearningModel(AbstractModel):
         }
 
     def train(self, dataset):
+        """Train the model with a dataset
+
+        Args:
+            dataset (list): List of training files
+        """
         # Get the original training set
         training_set = self.model["algo"].training_set
 
@@ -285,9 +339,19 @@ class MachineLearningModel(AbstractModel):
                                                  self.config["models"]["learning"]["classifier"]))
 
     def load(self, text_data):
+        """Load text data to the model
+
+        Args:
+            text_data (dict): Text data
+        """
         pass
 
     def correct(self, text_data):
+        """Correct text data
+
+        Args:
+            text_data (dict): Text data
+        """
         unigrams = Unigrams(join(self.config["root"],
                                  self.config["dirs"]["models_root"],
                                  self.config["dirs"]["models"]["inline"],

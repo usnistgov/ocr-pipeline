@@ -34,6 +34,15 @@ class Denoiser(object):
         self.logger.info("Denoiser initialized")
 
     def cleanse(self, filename, is_csv=False):
+        """Cleanse a file given its name
+
+        Parameters:
+            filename (str): Path of the file to cleanse
+            is_csv (bool): Specifies if the file is a CSV
+
+        Returns:
+            dict: Text data
+        """
         self.logger.debug("Cleaning "+filename+"...")
         text_data = Text(filename)
 
@@ -56,6 +65,11 @@ class Denoiser(object):
         return text_data
 
     def train(self, dataset):
+        """ Train the denoiser with a set of files
+
+        Parameters
+            dataset (list): List of files
+        """
         self.logger.debug("Training denoiser...")
 
         # Generate datastructures from dataset
@@ -80,6 +94,11 @@ class Denoiser(object):
         self.logger.info("Machine learning model trained")
 
     def generate_models(self, dataset):
+        """ Generates the datastructures given a set of files
+
+        Parameters
+            dataset (list): List of files
+        """
         self.logger.debug("Generating datastructures...")
         text_dataset = [Text(f) for f in dataset]
 

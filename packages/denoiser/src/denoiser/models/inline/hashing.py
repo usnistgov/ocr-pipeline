@@ -33,6 +33,8 @@ ocr_key_class_map = {
     "0": ("o", 1), "1": ("i", 1), "5": ("s", 1), "6": ("o", 1), "9": ("o", 1), "!": ("i", 1),
     "'": ("'", 1), "-": ("-", 1)
 }
+"""dict: Mapping of the letters to OCR key values
+"""
 
 
 def anagram_hash(word):

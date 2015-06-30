@@ -122,6 +122,8 @@ class Text(object):
         self.stats.set_stat("word_total_nb", 0)
 
     def read_csv(self):
+        """Read a CSV file and build the associated text object
+        """
         self.contains_training_data = True
 
         with open(self.filename, "r") as f:
@@ -169,6 +171,8 @@ class Text(object):
         logging.debug(self.filename+" read")
 
     def read_txt(self):
+        """Read a text file and build the associated text object
+        """
         self.contains_training_data = False
 
         with codecs.open(self.filename, "rb", encoding="utf-8") as f:
@@ -207,6 +211,11 @@ class Text(object):
         logging.debug(self.filename+" read")
 
     def get_clean_lines(self):
+        """Returns cleans line from the text object
+
+        Returns:
+            list: List of clean lines
+        """
         lines = []
 
         for paragraph in self.text:
@@ -220,6 +229,11 @@ class Text(object):
         return lines
 
     def get_garbage_lines(self):
+        """Returns garbage lines from the text object
+
+        Returns:
+            list: List of garbage lines
+        """
         lines = []
 
         for paragraph in self.text:
@@ -233,6 +247,11 @@ class Text(object):
         return lines
 
     def get_unclassified_lines(self):
+        """Returns unclassified lines from the text object
+
+        Returns:
+            list: List of unclassified lines
+        """
         lines = []
 
         for paragraph in self.text:
@@ -246,6 +265,11 @@ class Text(object):
         return lines
 
     def retrieve_text_score(self):
+        """Returns some stats and score regarding classification
+
+        Returns:
+            dict: Dictionary containing the results
+        """
         # True positive is a garbage string detected as such
         score_stats = {"FP": 0, "TP": 0, "FN": 0, "TN": 0}
         class_stats = {"classified": 0, "unclassified": 0, "unrated": 0}
@@ -355,20 +379,33 @@ class Line(object):
         self.stats["orig"].set_stat("sp_char", line_stats["#"])
 
     def raise_grade(self):
+        """Add 1 to the grade of the line (up to 5)
+        """
         if self.grade < 5:
             self.grade += 1
 
     def decrease_grade(self):
+        """Remove 1 to the grade of the line (down to 0)
+        """
         if self.grade > 0:
             self.grade -= 1
 
     def set_garbage(self):
+        """Set the grade to 0
+        """
         self.grade = 0
 
     def set_clean(self):
+        """Set the grade to 5
+        """
         self.grade = 5
 
     def get_orig_line(self):
+        """Returns the original line
+
+        Returns:
+            str: Original line
+        """
         string = self.pos_string
 
         for index, token in reversed(list(enumerate(self.tokens))):
@@ -377,6 +414,11 @@ class Line(object):
         return string
 
     def get_clean_line(self):
+        """Returns the clean line
+
+        Returns:
+            str: Clean line
+        """
         string = self.pos_string
 
         for index, token in reversed(list(enumerate(self.tokens))):
@@ -391,9 +433,19 @@ class Line(object):
         return re.sub(" +", " ", string).strip()
 
     def get_orig_stats(self):
+        """Get original stats of the line
+
+        Returns:
+            Statistics: Statistics of the original line
+        """
         return self.stats["orig"]
 
     def get_clean_stats(self):
+        """Get clean stats of the line
+
+        Returns:
+            Statistics: Statistics of the clean line
+        """
         if self.stats["clean"] is None:  # Compute clean stats if it is not already done
             self.stats["clean"] = Statistics(["lw_char", "up_char", "nb_char", "sp_char"])
 
@@ -411,6 +463,11 @@ class Line(object):
         return self.stats["clean"]
 
     def get_line_score(self):
+        """Return a global score of the line
+
+        Returns:
+            float: Score of the line
+        """
         score = 0
 
         if len(self.tokens) == 0:

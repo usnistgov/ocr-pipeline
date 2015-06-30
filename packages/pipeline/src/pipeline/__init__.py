@@ -18,6 +18,8 @@ import sys
 from actors import Slave, Master
 
 orig_sigint = signal.getsignal(signal.SIGINT)
+"""object: Original INTERUPT signal
+"""
 
 
 def run_slave(app_config):
@@ -29,6 +31,12 @@ def run_slave(app_config):
     s = Slave(app_config)
 
     def terminate(signum, frame):
+        """Stop the process in a clean way
+
+        Parameters
+            signum (int): Signal code
+            frame (object): original signal
+        """
         signal.signal(signal.SIGINT, orig_sigint)
 
         try:
@@ -50,6 +58,12 @@ def run_master(app_config):
     m = Master(app_config)
 
     def terminate(signum, frame):
+        """Stop the process in a clean way
+
+        Parameters
+            signum (int): Signal code
+            frame (object): original signal
+        """
         signal.signal(signal.SIGINT, orig_sigint)
 
         try:

@@ -19,6 +19,8 @@ from os.path import exists, join, isfile, splitext, dirname
 import yaml
 
 app_config = None
+"""dict: Configuration of the overall application
+"""
 
 
 def load_config(filename, root_directory):

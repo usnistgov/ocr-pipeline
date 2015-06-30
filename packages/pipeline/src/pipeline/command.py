@@ -34,6 +34,8 @@ class Command(object):
         self.config = app_config
 
     def get_file(self):
+        """Retrieve file from redis and unzip it to the local filesystem
+        """
         # Get hash from redis
         self.logger.debug("Retrieving "+self.filename+"...")
         self.fman.retrieve_file(self.filename)
@@ -42,12 +44,16 @@ class Command(object):
         self._unzip_file()
 
     def store_file(self):
+        """Zip file on the local filesystem and store it to redis
+        """
         self._zip_file()
 
         # Store it in redis
         self.fman.store_file(self.filename)
 
     def _zip_file(self):
+        """Check if the file can be zipped and zip it
+        """
         if self.unzipped is None:
             self.logger.error("Zipped directory has not been unzipped")
             return
@@ -56,6 +62,8 @@ class Command(object):
         self.unzipped = None
 
     def _unzip_file(self):
+        """Check if the file can be unzipped and unzip it
+        """
         if self.unzipped is not None:
             self.logger.error("Archive already unzipped")
             return

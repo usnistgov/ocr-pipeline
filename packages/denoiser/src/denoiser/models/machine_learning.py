@@ -36,10 +36,21 @@ class MachineLearningAlgorithm(object):
         logger.info("Model created (new)")
 
     def set_classifier(self, cls):
+        """Set the classifier
+
+        Args:
+            cls (object): Classifier object
+        """
         self.classifier = cls
         logger.info(cls.__class__.__name__+" model loaded")
 
     def set_training_set(self, features, results):
+        """Setup the training set and verify its integrity
+
+        Args:
+            features (list): Training set features
+            results (list): Training set results
+        """
         if len(features) != len(results):
             raise AttributeError("Number of features and result are different")
 
@@ -49,13 +60,32 @@ class MachineLearningAlgorithm(object):
         logger.debug("Training set uploaded")
 
     def train(self):
+        """Train the model with the given training set
+        """
         self.classifier.fit(self.training_set["features"], self.training_set["results"])
         logger.debug("Model trained")
 
     def classify(self, features):
+        """Classify features
+
+        Args:
+            features (list): Features to classify
+
+        Returns:
+            list: Results of the classification
+        """
         return self.classifier.predict(features)
 
     def compute_error(self, features, results):
+        """Compute classification error
+
+        Args:
+            features (list): Features to classify
+            results (list): Expected results
+
+        Returns:
+            float: Classification error
+        """
         prediction = self.classifier.predict(features)
         error = 0
 
@@ -77,6 +107,16 @@ class MachineLearningFeatures(object):
         self.features = []
 
     def extract_features(self, line, unigrams, text_stats):
+        """Extract features from a given line
+
+        Args:
+            line (Line): Line to get features from
+            unigrams (Unigrams): Unigrams for the given line
+            text_stats (Statistics): Statistics of the text the line is coming from
+
+        Returns:
+            list: List of the features
+        """
         # Simple features
         features = [
             float(line.stats["orig"].get_stat("lw_char")),

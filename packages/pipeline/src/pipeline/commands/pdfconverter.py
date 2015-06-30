@@ -36,6 +36,8 @@ class PDFConverter(Command):
                           + "; quality: "+str(self.quality) + "}")
 
     def execute(self):
+        """Execute the command
+        """
         self.logger.debug(":::    PDF conversion    :::")
         super(PDFConverter, self).get_file()
 
@@ -84,5 +86,7 @@ class PDFConverter(Command):
         return 0
 
     def finalize(self):
+        """Finalize the job
+        """
         super(PDFConverter, self).store_file()
         self.logger.debug("::: PDF conversion (END) :::")

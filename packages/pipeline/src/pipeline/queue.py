@@ -31,12 +31,27 @@ class QueueManager(object):
             self.queue_name = "default"
 
     def push(self, json_object):
+        """Push JSON on a redis queue
+
+        Parameters
+            json_object (dict): JSON to push to redis
+        """
         self.server.rpush(self.queue_name, json_object)
 
     def pop(self):
+        """Pop object from a redis queue
+
+        Returns
+            dict: JSON from redis
+        """
         return self.server.lpop(self.queue_name)
 
     def is_empty(self):
+        """Test if the queue is empty or not
+
+        Returns
+            bool: True if empty, false otherwise
+        """
         return len(self) == 0
 
     def __len__(self):
@@ -85,6 +100,11 @@ class CommandQueueItem(object):
             )
 
     def execute(self):
+        """Execute the command
+
+        Returns:
+            int: 0 if everything is good, >0 otherwise
+        """
         command = self.steps[self.current_step]
         cmd_result = command.execute()
 

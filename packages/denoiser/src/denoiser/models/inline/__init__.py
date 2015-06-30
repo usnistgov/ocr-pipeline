@@ -64,13 +64,28 @@ class InlineStructure(object):
             self.load()
 
     def append_data(self, **kwargs):
+        """Append data to the structure
+
+        Args:
+            **kwargs: Arbitrary keyword arguments
+
+        Raise:
+            NotImplementedError: Not yet implemented
+        """
         raise NotImplementedError("Function "+inspect.stack()[0][3]+" has not been implemented")
 
     def load(self):
+        """Load the structure from the file if it exists
+        """
         if not exists(self.filename):
             return
 
     def save(self):
+        """Save the structure to the file
+
+        Raise:
+            NotImplementedError: Not yet implemented
+        """
         raise NotImplementedError("Function "+inspect.stack()[0][3]+" has not been implemented")
 
 
@@ -88,6 +103,11 @@ class NGramsStructure(InlineStructure):
         raise NotImplementedError("Function "+inspect.stack()[0][3]+" has not been implemented")
 
     def prune(self, rate):
+        """Prune ngrams list given the rate of data to keep
+
+        Args:
+            rate (float): Limit rate of data to keep
+        """
         if rate >= 1:
             self.ngrams_pruned = self.ngrams
             return
@@ -169,6 +189,11 @@ class Unigrams(NGramsStructure):
         return unigrams
 
     def generate_low_case(self, altcase_map):
+        """Generate lower case unigrams
+
+        Args:
+            altcase_map (dict): List of alternative case word for a given lowercase word
+        """
         low_unigrams = {key: 0 for key in altcase_map.keys()}
 
         for unigram, alt_case_list in altcase_map.items():
@@ -249,6 +274,11 @@ class AltCaseMap(InlineStructure):
         self.save()
 
     def prune(self, unigrams_pruned):
+        """Prume the map given selected unigrams
+
+        Args:
+            unigrams_pruned (dict): List of unigrams to keep in the final list
+        """
         self.altcase_pruned_map = {unigram: self.altcase_map[unigram] for unigram in unigrams_pruned.keys()}
         self.save()
 

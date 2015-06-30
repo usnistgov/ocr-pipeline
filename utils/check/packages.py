@@ -14,6 +14,6 @@
     http://www.nist.gov/itl/ssd/is
 """
 from pipeline import run_master, run_slave
-
 import nltk
+
 nltk.data.find('tokenizers/punkt')

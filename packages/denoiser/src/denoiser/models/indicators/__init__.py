@@ -25,9 +25,22 @@ class StatsIndicator(object):
         self.stats = text_stats
 
     def set_stats(self, text_stats):
+        """Set statistics of the indicator based on text statistics
+
+        Args:
+            text_stats (Statistics): Text statistics
+        """
         self.stats = text_stats
 
     def match(self, line):
+        """Define if a line is matching the rules
+
+        Args:
+            line (Line): Input line
+
+        Returns:
+            bool: True
+        """
         return True
 
 
@@ -39,6 +52,14 @@ class RegexIndicator(object):
         self.regexp = '^'+regexp+'$'
 
     def match(self, line):
+        """Define if a line is matching the rules
+
+        Args:
+            line (Line): Input line
+
+        Returns:
+            bool: True if line match the RegExp, false otherwise
+        """
         return re.match(self.regexp, line.get_clean_line())
 
 

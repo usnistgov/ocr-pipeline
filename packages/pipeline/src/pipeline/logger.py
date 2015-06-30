@@ -21,7 +21,7 @@ from pipeline.queue import QueueManager
 
 
 class AppLogger(object):
-    """
+    """Logger publishing to a redis queue
     """
 
     def __init__(self, uid, local_logger, queue_ip="127.0.0.1", queue_port=6379):
@@ -32,6 +32,12 @@ class AppLogger(object):
         self.uid = uid
 
     def log(self, level, message):
+        """Log a message with a given level
+
+        Parameters
+            level (int): Log level
+            message (str): Message to store
+        """
         log_mess = {
             "uid": self.uid,
             "lvl": level,
@@ -42,18 +48,43 @@ class AppLogger(object):
         self.logger.log(level, "["+self.uid+"] "+message)
 
     def debug(self, message):
+        """Log a debug message
+
+        Parameters
+            message (str): Message to store
+        """
         self.log(logging.DEBUG, message)
 
     def info(self, message):
+        """Log an info message
+
+        Parameters
+            message (str): Message to store
+        """
         self.log(logging.INFO, message)
 
     def warning(self, message):
+        """Log a warning message
+
+        Parameters
+            message (str): Message to store
+        """
         self.log(logging.WARNING, message)
 
     def error(self, message):
+        """Log an error message
+
+        Parameters
+            message (str): Message to store
+        """
         self.log(logging.ERROR, message)
 
     def fatal(self, message):
+        """Log a fatal message
+
+        Parameters
+            message (str): Message to store
+        """
         self.log(logging.FATAL, message)
 
 
@@ -68,6 +99,8 @@ class LogWriter(StoppableThread):
         self.logger = app_logger
 
     def write_logs(self):
+        """Write logs to a local file
+        """
         while not self.log_queue.is_empty():
             log_json = self.log_queue.pop()
             log_data = json.loads(log_json)
