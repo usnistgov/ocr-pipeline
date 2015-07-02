@@ -1,4 +1,4 @@
-""" Utilities package, application level, meant to be reused
+""" Package containing several utilities for Python application.
 
 .. Authors:
     Philippe Dessauw

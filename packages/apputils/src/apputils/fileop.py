@@ -1,4 +1,4 @@
-"""Useful file operations
+"""File operations packages. Provide functions to interact with the filesystem.
 
 .. Authors:
     Philippe Dessauw
@@ -27,11 +27,11 @@ module_conf = {
 def zip_directory(directory):
     """Zip a directory
 
-    Paramters
-        directory (:func:`str`): Directory to zip
+    Parameters:
+        directory (str): Path to the directory to zip.
 
     Returns:
-        (:func:`str`): Name of the archive
+        str: Path to the archive.
     """
     archive_name = directory + module_conf["zip_ext"]
     zip_dir = ZipFile(archive_name, "w")
@@ -48,13 +48,13 @@ def zip_directory(directory):
 
 
 def unzip_directory(archive):
-    """Unzip an archive
+    """Unzip an archive.
 
-    Paramters
-        archive (:func:`str`): Archive to unzip
+    Parameters:
+        archive (str): Path to the archive to unzip.
 
     Returns:
-        (:func:`str`): Name of the directory
+        str: Path to the directory.
     """
     zip_dir = ZipFile(archive, "r")
     directory = splitext(archive)[0]
@@ -66,14 +66,15 @@ def unzip_directory(archive):
 
 
 def create_directories(dir_conf, prefix=None):
-    """Create application directories and subdirectories given a configuration dictionary
+    """Create application directories and subdirectories given a configuration dictionary.
 
-    Parameters
-        dir_conf (:func:`str`): List of directories to create
-        prefix (:func:`str` or None): Root directory for the current tree
+    Parameters:
+        dir_conf (str): List of directories to create.
+        prefix (str): Root directory for the directories to create. Default to `None` (directories will be built in
+            the current directory).
 
     Raises:
-        ValueError: If there is a subdirectory with no root or if the subdirectory key is not a dictionary
+        ValueError: If there is a subdirectory with no root or if the subdirectory key is not a dictionary.
     """
     dirnames = [d for d in dir_conf.values() if isinstance(d, str)]
 
@@ -107,13 +108,13 @@ def create_directories(dir_conf, prefix=None):
 
 
 def file_checksum(filename):
-    """Return the sha256 digest of a file
+    """Return the sha256 digest of a file.
 
     Parameters:
-        filename (:func:`str`): The file to hash
+        filename (str): The file to hash.
 
     Returns:
-        (:func:`str`): Hash of the file
+        str: Hash of the file.
     """
     return sha256(open(filename).read()).hexdigest()
 

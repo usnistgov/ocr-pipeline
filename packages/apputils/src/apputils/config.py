@@ -1,4 +1,4 @@
-"""Configuration package. Contains some functions to access YAML configuration file.
+"""Configuration package. Contains functions to access YAML configuration file.
 
 .. Authors:
     Philippe Dessauw
@@ -19,15 +19,16 @@ from os.path import exists, join, isfile, splitext, dirname
 import yaml
 
 app_config = None
-"""dict: Configuration of the overall application
+"""dict: Configuration of the overall application.
 """
 
 
 def load_config(filename, root_directory):
-    """Load a YAML configuration file. All data is stored in :attr:`denoiser.app_config`.
+    """Load a YAML configuration file. All data is stored in the variable :attr:`app_config`.
 
     Parameters:
-        filename (:func:`str`): YAML configuration file
+        filename (str): YAML configuration file.
+        root_directory (str): Installation directory of the app.
     """
     global app_config
 
@@ -64,17 +65,34 @@ def load_config(filename, root_directory):
 
 
 def get_config(key):
-    """Return value of a given key hash. Subelement are split using '/'. Access to list element is done using '#'.
+    """Return value of a given key hash.
+
+    Hashes are formatted using '/' to define parent-child relationship and '#' to define a list element.
+
+    Example:
+        Given the following YAML file (already loaded)::
+
+            app:
+                root: /path/to/root
+                conf:
+                    - dev: conf/dev.conf
+                    - test: conf/test.conf
+                    - prod: conf/prod.conf
+
+        In order to get the path of the test configuration file you would type::
+
+            >>> get_config('app/conf#2/test')
+
 
     Parameters:
-        key (:func:`str`): Key hash to find
+        key (str): Key hash of the value to return.
 
     Returns:
-        :func:`str`: Value for the given key
+        str: Value for the given key if it exists.
 
     Raises:
-        ValueError: App config has not been loaded
-        KeyError: Key hash has not been found
+        ValueError: App config has not been loaded.
+        KeyError: Key hash has not been found.
     """
     if app_config is None:
         raise ValueError("App config not loaded")
