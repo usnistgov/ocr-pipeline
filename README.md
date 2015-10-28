@@ -1,8 +1,10 @@
-# OCR Pipeline
+# OCR Pipeline 
 
 **Author:** Philippe Dessauw, philippe.dessauw@nist.gov
 
 **Contact:** Alden Dima, alden.dima@nist.gov
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/usnistgov/ocr-pipeline/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/usnistgov/ocr-pipeline/?branch=master)
 
 -----
 
