@@ -121,16 +121,6 @@ Path where you have downloaded Ocropy.
 
 Path where you have downloaded the Ocropy model (*en-default.pyrnn.gz*).
 
-### env.yaml
-
-#### python / path
-
-Path of your general Python installation.
-
-#### python / virtualenv
-
-Path of your virtual environment. Comment this line if not needed.
-
 ### machines.yaml
 
 #### master

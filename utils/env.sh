@@ -64,33 +64,33 @@ source ${TMP_CONF_FILE}
 rm ${TMP_CONF_FILE}
 
 # If a python path has been setup and is a directory
-if [ -d "${python_path}" ]
-then
-    export PATH=${python_path}/bin:$PATH
-else
-    if [ -n "${python_path}" ]
-    then
-        echo "${python_path} is not a valid directory"
-        nok
-    fi
-fi
-
-# If a python environment has been setup and is a directory
-if [ -d "${python_virtualenv}" ]
-then
-    current_python_env=`python ${ROOT}/utils/prefix.py`
-
-    if [ ${current_python_env} != ${python_virtualenv} ]
-    then
-        source activate ${python_virtualenv} &>/dev/null
-    fi
-else
-    if [ -n "${python_virtualenv}" ]
-    then
-        echo "${python_virtualenv} is not a valid directory"
-        nok
-    fi
-fi
+#if [ -d "${python_path}" ]
+#then
+#    export PATH=${python_path}/bin:$PATH
+#else
+#    if [ -n "${python_path}" ]
+#    then
+#        echo "${python_path} is not a valid directory"
+#        nok
+#    fi
+#fi
+#
+## If a python environment has been setup and is a directory
+#if [ -d "${python_virtualenv}" ]
+#then
+#    current_python_env=`python ${ROOT}/utils/prefix.py`
+#
+#    if [ ${current_python_env} != ${python_virtualenv} ]
+#    then
+#        source activate ${python_virtualenv} &>/dev/null
+#    fi
+#else
+#    if [ -n "${python_virtualenv}" ]
+#    then
+#        echo "${python_virtualenv} is not a valid directory"
+#        nok
+#    fi
+#fi
 
 # Useful variables
 CURRENT_DIR=`echo $(cd -P $(dirname $0) && pwd)`
