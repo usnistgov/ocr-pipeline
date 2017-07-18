@@ -55,13 +55,13 @@ function ok {
 DIR=`echo $(cd -P $(dirname ${BASH_SOURCE[0]}) && pwd)`
 export ROOT="${DIR}/.."
 CONF_FILE="${ROOT}/conf/app.yaml"
-ENV_CONF_FILE="${ROOT}/conf/env.yaml"
-TMP_CONF_FILE="/tmp/env.conf"
+#ENV_CONF_FILE="${ROOT}/conf/env.yaml"
+#TMP_CONF_FILE="/tmp/env.conf"
 
 # Turning on the python environment
-parse_yaml ${ENV_CONF_FILE} > ${TMP_CONF_FILE}
-source ${TMP_CONF_FILE}
-rm ${TMP_CONF_FILE}
+#parse_yaml ${ENV_CONF_FILE} > ${TMP_CONF_FILE}
+#source ${TMP_CONF_FILE}
+#rm ${TMP_CONF_FILE}
 
 # If a python path has been setup and is a directory
 #if [ -d "${python_path}" ]
