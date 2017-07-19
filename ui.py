@@ -52,59 +52,59 @@ output.update({
 local_exec = False
 
 
-@task
-def install():
-    """Install the pipeline on the specified cluster
-    """
-    logger.debug("Installing pipeline...")
-
-    local_root = os.environ['ROOT']
-    remote_root = app_config['root']
-
-    if local_exec:
-        if abspath(local_root) == abspath(remote_root):
-            logger.error("Source and destination folder are the same")
-            exit(1)
-
-        if exists(remote_root):
-            if confirm("Existing data will be deleted. Do you want to proceed anyway?", default=False):
-                rmtree(remote_root)
-            else:
-                logger.error("Pipeline destination folder already exists")
-                exit(2)
-
-        copytree(local_root, remote_root)
-        local(remote_root+'/utils/install.sh')
-    else:
-        if app_config["use_sudo"]:
-            run_fn = sudo
-        else:
-            run_fn = run
-
-        if not fab_exists(remote_root):
-            logging.debug("Building remote directory...")
-            run_fn("mkdir -p "+remote_root)
-        else:
-            if not confirm("Existing data will be deleted. Do you want to proceed anyway?", default=False):
-                logger.error("Pipeline destination folder already exists")
-                exit(2)
-
-        logging.debug("Uploading project...")
-        upload_project(
-            local_dir=local_root,
-            remote_dir=remote_root,
-            use_sudo=app_config["use_sudo"]
-        )
-
-        if run_fn(remote_root+"/utils/auth.sh").failed:
-            logger.error("An error occured with modifying the right for the pipeline")
-            exit(3)
-
-        if run(remote_root+"/utils/install.sh").failed:
-            logger.error("An error occured with the install script")
-            exit(4)
-
-    logger.info("Pipeline successfully installed")
+# @task
+# def install():
+#     """Install the pipeline on the specified cluster
+#     """
+#     logger.debug("Installing pipeline...")
+#
+#     local_root = os.environ['ROOT']
+#     remote_root = app_config['root']
+#
+#     if local_exec:
+#         if abspath(local_root) == abspath(remote_root):
+#             logger.error("Source and destination folder are the same")
+#             exit(1)
+#
+#         if exists(remote_root):
+#             if confirm("Existing data will be deleted. Do you want to proceed anyway?", default=False):
+#                 rmtree(remote_root)
+#             else:
+#                 logger.error("Pipeline destination folder already exists")
+#                 exit(2)
+#
+#         copytree(local_root, remote_root)
+#         local(remote_root+'/utils/install.sh')
+#     else:
+#         if app_config["use_sudo"]:
+#             run_fn = sudo
+#         else:
+#             run_fn = run
+#
+#         if not fab_exists(remote_root):
+#             logging.debug("Building remote directory...")
+#             run_fn("mkdir -p "+remote_root)
+#         else:
+#             if not confirm("Existing data will be deleted. Do you want to proceed anyway?", default=False):
+#                 logger.error("Pipeline destination folder already exists")
+#                 exit(2)
+#
+#         logging.debug("Uploading project...")
+#         upload_project(
+#             local_dir=local_root,
+#             remote_dir=remote_root,
+#             use_sudo=app_config["use_sudo"]
+#         )
+#
+#         if run_fn(remote_root+"/utils/auth.sh").failed:
+#             logger.error("An error occured with modifying the right for the pipeline")
+#             exit(3)
+#
+#         if run(remote_root+"/utils/install.sh").failed:
+#             logger.error("An error occured with the install script")
+#             exit(4)
+#
+#     logger.info("Pipeline successfully installed")
 
 
 @task
@@ -165,13 +165,13 @@ def check():
         launch_script(script)
 
 
-@task
-@runs_once
-def start_pipeline():
-    """Start the conversion process across the platform.
-    """
-    execute(start_master)
-    execute(start_slave)
+# @task
+# @runs_once
+# def start_pipeline():
+#     """Start the conversion process across the platform.
+#     """
+#     execute(start_master)
+#     execute(start_slave)
 
 
 @task
@@ -179,7 +179,7 @@ def start_pipeline():
 def start_master():
     """Start the master server on the local machine
     """
-    launch_script("utils/run-wrapper.sh", ["--master", "> logs/master.log"], True)
+    launch_script("utils/run-wrapper.sh", ["--master", ("> %s/master.log", app_config["dirs"]["logs"])], True)
 
 
 @task
@@ -187,7 +187,7 @@ def start_master():
 def start_slave():
     """Start a slave on the local machine
     """
-    launch_script("utils/run-wrapper.sh", ["--slave", "> logs/slave.log"], True)
+    launch_script("utils/run-wrapper.sh", ["--slave", ("> %s/slave.log", app_config["dirs"]["logs"])], True)
 
 
 def launch_script(script_name, script_opts=list(), background=False):
