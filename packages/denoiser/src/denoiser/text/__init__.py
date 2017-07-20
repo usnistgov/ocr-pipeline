@@ -123,6 +123,9 @@ class Text(object):
 
     def read_csv(self):
         """Read a CSV file and build the associated text object
+
+        Returns:
+            `Text`
         """
         self.contains_training_data = True
 
@@ -172,6 +175,9 @@ class Text(object):
 
     def read_txt(self):
         """Read a text file and build the associated text object
+
+        Returns:
+            `Text`
         """
         self.contains_training_data = False
 
@@ -332,7 +338,7 @@ class Line(object):
     """Represents a line of text and provides datastructures to handle it.
 
     Args:
-        string (str): Line to parse.
+        string (unicode): Line to parse.
         result (int): (**Optional**) Expected result for a line (either a garbage string or a clean line)
 
     Attributes:

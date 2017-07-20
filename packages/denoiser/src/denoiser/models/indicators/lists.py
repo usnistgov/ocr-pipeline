@@ -36,7 +36,7 @@ class IndicatorsList(object):
         """Set stats for all the StatsIndicator
 
         Args:
-            stat (Statistics): Text statistics to setup
+            stats (`Statistics`): Text statistics to setup
         """
         for indicator in self.indicators:
             if indicator.__class__.__base__ == StatsIndicator:
@@ -46,7 +46,7 @@ class IndicatorsList(object):
         """Define if a line is matching the indicators
 
         Args:
-            line (Line): Input line
+            line (`Line`): Input line
 
         Returns:
             bool: True if line match at least one indicator

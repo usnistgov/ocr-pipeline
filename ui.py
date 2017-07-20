@@ -38,8 +38,8 @@ from apputils.config import app_config
 logger = logging.getLogger('app')
 
 # Hosts configurations
-env.roledefs = app_config["machines"]
-env.hosts = [ip for ips in env.roledefs.values() for ip in ips]
+# env.roledefs = app_config["machines"]
+# env.hosts = [ip for ips in env.roledefs.values() for ip in ips]
 
 # Extra default configuration
 env.warn_only = True
@@ -196,6 +196,7 @@ def launch_script(script_name, script_opts=list(), background=False):
     Parameters:
         script_name (:func:`str`): Path of the script to run
         script_opts (:func:`str`): Options to pass to the script
+        background (bool): Whether to launch the script in background
     """
     if local_exec:
         root_dir = os.environ['ROOT']

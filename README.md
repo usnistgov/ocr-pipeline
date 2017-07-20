@@ -121,17 +121,6 @@ Path where you have downloaded Ocropy.
 
 Path where you have downloaded the Ocropy model (*en-default.pyrnn.gz*).
 
-### machines.yaml
-
-#### master
-
-The IP address of the master is in the form of a connection string. It is formatted as a list but only the first element 
-is relevant.
-
-#### slaves
-
-List of connection strings to the slaves.
-
 
 ## Installation
 

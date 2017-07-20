@@ -38,7 +38,7 @@ class PNGReader(Command):
         """Execute the command
         """
         self.logger.debug("::: PNG reading :::")
-        super(PNGReader, self).get_file()
+        # super(PNGReader, self).get_file()
 
         procs = str(self.proc_count)
 
@@ -102,5 +102,5 @@ class PNGReader(Command):
     def finalize(self):
         """Finalize the job
         """
-        super(PNGReader, self).store_file()
+        # super(PNGReader, self).store_file()
         self.logger.debug("::: PNG reading (END) :::")

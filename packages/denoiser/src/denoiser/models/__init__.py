@@ -115,7 +115,7 @@ class InlineModel(AbstractModel):
         """Load text data to the model
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         if self.is_preprocessed(text_data.filename) != 0:
             self.logger.debug(text_data.filename+" already loaded: skipping it.")
@@ -159,7 +159,7 @@ class InlineModel(AbstractModel):
         """Correct text data
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         correction_data = self.correction_data()
 
@@ -234,7 +234,7 @@ class IndicatorModel(AbstractModel):
         """Load text data to the model
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         for indicator_list in self.model.values():
             indicator_list.set_stats(text_data.stats)
@@ -243,7 +243,7 @@ class IndicatorModel(AbstractModel):
         """Correct text data
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         # =======================
         # Strong indicators
@@ -342,7 +342,7 @@ class MachineLearningModel(AbstractModel):
         """Load text data to the model
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         pass
 
@@ -350,7 +350,7 @@ class MachineLearningModel(AbstractModel):
         """Correct text data
 
         Args:
-            text_data (dict): Text data
+            text_data (`Text`): Text data
         """
         unigrams = Unigrams(join(self.config["root"],
                                  self.config["dirs"]["models_root"],

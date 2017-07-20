@@ -41,7 +41,7 @@ class Denoiser(object):
             is_csv (bool): Specifies if the file is a CSV
 
         Returns:
-            dict: Text data
+            `Text`: Text data
         """
         self.logger.debug("Cleaning "+filename+"...")
         text_data = Text(filename)

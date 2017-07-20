@@ -28,7 +28,7 @@ class StatsIndicator(object):
         """Set statistics of the indicator based on text statistics
 
         Args:
-            text_stats (Statistics): Text statistics
+            text_stats (`Statistics`): Text statistics
         """
         self.stats = text_stats
 
@@ -104,7 +104,7 @@ class CleanTextIndicator(StatsIndicator):
         if len(line) == 0:
             return False
 
-        return len(line) >= self.stats.get_stat("line_avg_length") * self.max_length_rate \
+        return float(len(line)) >= self.stats.get_stat("line_avg_length") * self.max_length_rate \
             and (line.get_clean_stats().get_stat('lw_char') / len(line) > self.char_rate
                  or line.get_clean_stats().get_stat('up_char') / len(line) > self.char_rate)
 

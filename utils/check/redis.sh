@@ -40,7 +40,8 @@ else
     nok
 fi
 
-REDIS_SERVER=`get_value_for_key machines/master#0` || nok
+#REDIS_SERVER=`get_value_for_key machines/master#0` || nok
+REDIS_SERVER=`get_value_for_key redis/host` || nok
 REDIS_PORT=`get_value_for_key redis/port` || nok
 
 redis-cli -h ${REDIS_SERVER} -p ${REDIS_PORT} ping > ${redis_check_file}

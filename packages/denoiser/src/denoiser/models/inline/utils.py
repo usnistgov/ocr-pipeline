@@ -149,11 +149,11 @@ def truncate_ocr_sim_list(token, ocr_sims_list, limit=10):
 
     Parameters:
         token (:func:`str`): Initial token
-        ocr_sims_list (list): OCR similarities
+        ocr_sims_list (dict): OCR similarities
         limit (int): Final number of similarities
 
     Returns:
-        list - List of similarities to keep
+        dict - List of similarities to keep
     """
     if len(ocr_sims_list) <= limit:
         return ocr_sims_list
@@ -204,7 +204,7 @@ def split_ocr_list(token, ocr_list):
 
     Parameters:
         token (:func:`str`): Token to correct
-        ocr_list (list): List of possible OCR correction
+        ocr_list (:func:`dict`): List of possible OCR correction
     Returns:
         tuple - Strong OCR words and weak OCR words
     """
@@ -282,7 +282,7 @@ def find_correct_case(word, case_mode, structures):
     Parameters:
         word (:func:`str`): Word to correct
         case_mode (int): Choice between lower or upper case (extra choice for undecisive)
-        structures (list): List of structures needed to perform the choice
+        structures (dict): List of structures needed to perform the choice
     Returns:
         :func:`str` - Corrected word
     """
@@ -360,7 +360,7 @@ def correct_case(token, corrections_map, structures):
 
     Parameters:
         token (:func:`str`): Cleaned token
-        correction_map (:func:`dict`): Result of `build_candidates_list`
+        corrections_map (:func:`dict`): Result of `build_candidates_list`
         structures (:func:`dict`): Datastructures from file
 
     Returns:
@@ -528,6 +528,7 @@ def select_correction(word, corrections_map):
     """Select the best correction for a word given its score
 
     Parameters:
+        word (str): Word to select a correction for.
         corrections_map (:func:`dict`): Dictionary containing all corrections for a token along with their score
 
     Returns:

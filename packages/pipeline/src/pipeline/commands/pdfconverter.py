@@ -39,7 +39,7 @@ class PDFConverter(Command):
         """Execute the command
         """
         self.logger.debug(":::    PDF conversion    :::")
-        super(PDFConverter, self).get_file()
+        # super(PDFConverter, self).get_file()
 
         self.logger.debug(str(listdir(self.unzipped)))
         pdf_list = [join(self.unzipped, f) for f in listdir(self.unzipped)
@@ -88,5 +88,5 @@ class PDFConverter(Command):
     def finalize(self):
         """Finalize the job
         """
-        super(PDFConverter, self).store_file()
+        # super(PDFConverter, self).store_file()
         self.logger.debug("::: PDF conversion (END) :::")

@@ -69,7 +69,7 @@ def create_directories(dir_conf, prefix=None):
     """Create application directories and subdirectories given a configuration dictionary.
 
     Parameters:
-        dir_conf (str): List of directories to create.
+        dir_conf (dict): List of directories to create.
         prefix (str): Root directory for the directories to create. Default to `None` (directories will be built in
             the current directory).
 

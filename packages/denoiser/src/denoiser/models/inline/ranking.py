@@ -81,7 +81,7 @@ def rate_corrections(correction_list):
     """Bring the score between 0 and 1
 
     Parameters:
-        correction_list (list): The list of correction
+        correction_list (dict): The list of correction
     Returns:
         list: Correction list with corrected scores
     """

@@ -1,6 +1,0 @@
-master:
-    - 127.0.0.1
-slaves:
-    - 127.0.0.1
-    # - localhost
-    # - user@127.0.0.1

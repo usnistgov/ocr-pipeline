@@ -33,7 +33,7 @@ class TXTDenoiser(Command):
         """
         try:
             self.logger.debug("::: Text cleaning :::")
-            super(TXTDenoiser, self).get_file()
+            # super(TXTDenoiser, self).get_file()
 
             txt_dir = join(self.unzipped, "txt")
             txt_files = [join(txt_dir, f) for f in listdir(txt_dir) if isfile(join(txt_dir, f)) and f.endswith(".txt")]
@@ -76,5 +76,5 @@ class TXTDenoiser(Command):
     def finalize(self):
         """Finalize the job
         """
-        super(TXTDenoiser, self).store_file()
+        # super(TXTDenoiser, self).store_file()
         self.logger.debug("::: Text cleaning (END) :::")
