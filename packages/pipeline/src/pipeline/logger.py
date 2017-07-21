@@ -16,9 +16,6 @@
 import json
 import logging
 from time import sleep
-
-from hgext.mq import queue
-
 from pipeline.threads import StoppableThread
 from pipeline.queue import QueueManager
 
