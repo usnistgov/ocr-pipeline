@@ -66,7 +66,7 @@ class Master(StoppableThread):
 
                 for filename in filenames:
                     full_filename = join(self.input, filename)
-                    dirname = create_data_directory(full_filename)
+                    dirname = create_data_directory(self.config["dirs"]["temp"], full_filename)
 
                     if dirname is not None:
                         # archive = zip_directory(dirname)

@@ -19,16 +19,17 @@ from os.path import join
 from shutil import move
 
 local_config = {
-    "tmp_dir": "tmp",
+    "tmp_dir": "tmp",  # FIXME not used anymore
     "dirs": ["png", "txt/segments"]
 }
 
 
-def create_data_directory(filename):
+def create_data_directory(filename, tmp_dir):
     """Create the data directory for a PDF file
 
     Parameters:
         filename (:func:`str`):
+        tmp_dir (str):
 
     Returns:
         :func:`str`  - Location of the directory
@@ -37,7 +38,7 @@ def create_data_directory(filename):
         return None
 
     file_hash = sha256(open(filename).read()).hexdigest()
-    tmp_dir = join(local_config["tmp_dir"], file_hash)
+    tmp_dir = join(tmp_dir, file_hash)
 
     # Creating main directory with the PDF inside
     makedirs(tmp_dir)
