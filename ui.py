@@ -179,7 +179,7 @@ def check():
 def start_master():
     """Start the master server on the local machine
     """
-    launch_script("utils/run-wrapper.sh", ["--master", ("> %s/master.log", app_config["dirs"]["logs"])], True)
+    launch_script("utils/run-wrapper.sh", ["--master", ("> %s/master.log" % app_config["dirs"]["logs"])], True)
 
 
 @task
@@ -187,7 +187,7 @@ def start_master():
 def start_slave():
     """Start a slave on the local machine
     """
-    launch_script("utils/run-wrapper.sh", ["--slave", ("> %s/slave.log", app_config["dirs"]["logs"])], True)
+    launch_script("utils/run-wrapper.sh", ["--slave", ("> %s/slave.log" % app_config["dirs"]["logs"])], True)
 
 
 def launch_script(script_name, script_opts=list(), background=False):
