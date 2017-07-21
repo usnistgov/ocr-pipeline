@@ -40,7 +40,7 @@ class Master(StoppableThread):
         redis_port = app_config["redis"]["port"]
 
         self.logger = AppLogger("master", logging.getLogger("local"), redis_ip, redis_port)
-        self.log_writer = LogWriter(logging.getLogger("app"))
+        self.log_writer = LogWriter(redis_ip, redis_port, logging.getLogger("app"))
 
         self.command_queue = QueueManager(host=redis_ip, port=redis_port, qname="commands")
         self.finished_queue = QueueManager(host=redis_ip, port=redis_port, qname="finished")

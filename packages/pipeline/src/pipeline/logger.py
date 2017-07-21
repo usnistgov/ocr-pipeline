@@ -16,6 +16,9 @@
 import json
 import logging
 from time import sleep
+
+from hgext.mq import queue
+
 from pipeline.threads import StoppableThread
 from pipeline.queue import QueueManager
 
@@ -92,10 +95,10 @@ class LogWriter(StoppableThread):
     """Pops element from the logging queue and write them in the proper directory
     """
 
-    def __init__(self, app_logger):
+    def __init__(self, app_logger, queue_ip="127.0.0.1", queue_port=6379):
         StoppableThread.__init__(self)
 
-        self.log_queue = QueueManager(qname="logging")
+        self.log_queue = QueueManager(host=queue_ip, port=queue_port, qname="logging")
         self.logger = app_logger
 
     def write_logs(self):
