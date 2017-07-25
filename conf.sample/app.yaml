@@ -31,7 +31,7 @@ redis:
     host: 127.0.0.1
     port: 6379
 exts:
-    tmp: .bin
+    tmp: .tmp
     garbage: .grbge.txt
     clean: .clean.txt
     unclassified: .noclass.txt
