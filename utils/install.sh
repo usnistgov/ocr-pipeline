@@ -28,5 +28,5 @@ do
     cd ${ROOT}/packages/${pkg}
     rm -r dist
     python2 setup.py sdist
-    pip install dist/*.tar.gz
+    pip install dist/*.tar.gz --no-cache-dir
 done

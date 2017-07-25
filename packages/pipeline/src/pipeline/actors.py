@@ -19,7 +19,6 @@ from os.path import join, exists, split
 from socket import gethostbyname, gethostname
 from time import sleep
 from shutil import move
-from apputils.fileop import zip_directory
 from pipeline.files import FileManager
 from pipeline.threads import StoppableThread
 from pipeline.utils import create_data_directory
@@ -53,20 +52,22 @@ class Master(StoppableThread):
 
     def run(self):
         self.log_writer.start()
-        self.logger.debug("Running master...")
+        self.logger.info("Starting master...")
 
         processed_filenames = []
 
         while not self.is_stopped():
-            self.logger.debug("Reading input directory...")
+            self.logger.info("Reading input directory...")
             filenames = [f for f in listdir(self.input) if f not in processed_filenames]
 
             if len(filenames) > 0:
                 self.logger.info(str(len(filenames)) + " file(s) to put in the queue")
 
                 for filename in filenames:
+                    self.logger.debug("Processing %s..." % filename)
                     full_filename = join(self.input, filename)
-                    dirname = create_data_directory(self.config["dirs"]["temp"], full_filename)
+                    dirname = create_data_directory(full_filename, self.config["dirs"]["temp"])
+                    self.logger.debug("%s has been created." % dirname)
 
                     if dirname is not None:
                         # archive = zip_directory(dirname)
@@ -131,7 +132,7 @@ class Slave(StoppableThread):
         self.logger.info("Slave initiated [redis on "+redis_ip+"]")
 
     def run(self):
-        self.logger.debug("Running slave...")
+        self.logger.info("Starting slave...")
 
         while not self.is_stopped():
             if not self.command_queue.is_empty():
