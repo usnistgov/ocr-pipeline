@@ -29,6 +29,11 @@ been tested.
 
 ## Prerequisites
 
+### ImageMagick and Ghostscript
+
+The pipeline uses ImageMagick and Ghostscript to interact with the PDF file and the generated images. Both of them are available 
+through the package manager of the installed operating system.
+
 ### Python
 
 The pipeline is developed in *Python2* (>=2.7). You can check your version using:
