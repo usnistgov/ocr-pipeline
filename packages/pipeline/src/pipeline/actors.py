@@ -54,11 +54,12 @@ class Master(StoppableThread):
         self.log_writer.start()
         self.logger.info("Starting master...")
 
-        processed_filenames = []
+        # processed_filenames = []
 
         while not self.is_stopped():
             self.logger.info("Reading input directory...")
-            filenames = [f for f in listdir(self.input) if f not in processed_filenames]
+            # filenames = [f for f in listdir(self.input) if f not in processed_filenames]
+            filenames = listdir(self.input)
 
             if len(filenames) > 0:
                 self.logger.info(str(len(filenames)) + " file(s) to put in the queue")
@@ -76,7 +77,7 @@ class Master(StoppableThread):
                         self.command_queue.push(CommandQueueItem(filename=dirname, logger=self.logger,
                                                                  config=self.config))
 
-                    processed_filenames.append(filename)
+                    # processed_filenames.append(filename)
                     self.logger.info("Incoming files have been put in the queue")
 
             if len(self.finished_queue) > 0:
