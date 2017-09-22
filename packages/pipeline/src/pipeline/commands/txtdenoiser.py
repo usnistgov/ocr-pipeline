@@ -28,6 +28,8 @@ class TXTDenoiser(Command):
         super(TXTDenoiser, self).__init__(filename, logger, config)
         self.denoiser = Denoiser(config)
 
+        self.logger.debug("Denoiser initialized")
+
     def execute(self):
         """Execute the command
         """

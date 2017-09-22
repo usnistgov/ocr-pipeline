@@ -1,4 +1,4 @@
-"""Package defining Redis queue
+""" Package defining Redis queue
 
 .. Authors:
     Philippe Dessauw
@@ -19,7 +19,7 @@ from pipeline.commands import *
 
 
 class QueueManager(object):
-    """Redis queue manager.
+    """ Redis queue manager.
     """
 
     def __init__(self, host="127.0.0.1", port=6379, db=0, qname=None):
@@ -59,7 +59,7 @@ class QueueManager(object):
 
 
 class CommandQueueItem(object):
-    """Command stored in the redis queue.
+    """ Command stored in the redis queue.
     """
 
     def __init__(self, filename="", jsondata="", logger=None, config=None):
@@ -73,7 +73,7 @@ class CommandQueueItem(object):
             self.filename = data["filename"]
             self.tries = data["tries"]
 
-        self.filename = join(self.filename)
+        # self.filename = join(self.filename)
         self.logger = logger
         self.config = config
 
@@ -103,7 +103,7 @@ class CommandQueueItem(object):
         """Execute the command
 
         Returns:
-            int: 0 if everything is good, >0 otherwise
+            int: 0 when no errors happen, >0 otherwise
         """
         command = self.steps[self.current_step]
         cmd_result = command.execute()

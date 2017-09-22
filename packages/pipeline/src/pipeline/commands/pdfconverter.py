@@ -14,7 +14,7 @@
     http://www.nist.gov/itl/ssd/is
 """
 from os import listdir
-from os.path import join, isfile, dirname, splitext, basename
+from os.path import join, isfile, dirname, splitext, basename, isdir
 import PyPDF2
 import PythonMagick
 from pipeline.command import Command
@@ -40,7 +40,11 @@ class PDFConverter(Command):
         """
         self.logger.debug(":::    PDF conversion (%s)    :::" % str(self.unzipped))
 
-        self.logger.debug(str(listdir(self.unzipped)))
+        if not isdir(self.unzipped):
+            self.logger.error("%s is not a directory" % self.unzipped)
+            return 2
+
+        self.logger.debug("Browsing %s for pdf files..." % self.unzipped)
         pdf_list = [join(self.unzipped, f) for f in listdir(self.unzipped)
                     if isfile(join(self.unzipped, f)) and f.endswith(".pdf")]
 
