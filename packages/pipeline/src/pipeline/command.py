@@ -34,6 +34,8 @@ class Command(object):
         self.unzipped = filename
         self.config = app_config
 
+        self.logger.debug("File to be processed: %s" % str(self.unzipped))
+
     # def get_file(self):
     #     """Retrieve file from redis and unzip it to the local filesystem
     #     """

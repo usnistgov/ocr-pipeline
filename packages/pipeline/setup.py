@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pipeline",
-    version="1.1.0-alpha2",
+    version="1.1.0-alpha3",
 
     description=("Transform PDF files to clean text files using a distributed architecture",),
 

@@ -138,6 +138,7 @@ class Slave(StoppableThread):
         while not self.is_stopped():
             if not self.command_queue.is_empty():
                 cmd_json = self.command_queue.pop()
+                self.logger.debug("CommandQueueItem(jsondata=%s, ...)" % str(cmd_json))
                 cmd = CommandQueueItem(jsondata=cmd_json, logger=self.logger, config=self.config)
 
                 status = cmd.execute()

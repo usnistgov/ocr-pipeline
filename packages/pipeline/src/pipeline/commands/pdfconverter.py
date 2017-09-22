@@ -1,4 +1,4 @@
-"""Package to convert PDF to PNG
+""" Package to convert PDF to PNG
 
 .. Authors:
     Philippe Dessauw
@@ -21,7 +21,7 @@ from pipeline.command import Command
 
 
 class PDFConverter(Command):
-    """Command to convert PDF to PNG.
+    """ Command to convert PDF to PNG.
     """
 
     def __init__(self, filename, logger, config):
@@ -36,10 +36,9 @@ class PDFConverter(Command):
                           + "; quality: "+str(self.quality) + "}")
 
     def execute(self):
-        """Execute the command
+        """ Execute the command
         """
-        self.logger.debug(":::    PDF conversion    :::")
-        # super(PDFConverter, self).get_file()
+        self.logger.debug(":::    PDF conversion (%s)    :::" % str(self.unzipped))
 
         self.logger.debug(str(listdir(self.unzipped)))
         pdf_list = [join(self.unzipped, f) for f in listdir(self.unzipped)
@@ -86,7 +85,7 @@ class PDFConverter(Command):
         return 0
 
     def finalize(self):
-        """Finalize the job
+        """ Finalize the job
         """
         # super(PDFConverter, self).store_file()
-        self.logger.debug("::: PDF conversion (END) :::")
+        self.logger.debug("::: PDF conversion END (%s) :::" % str(self.unzipped))
