@@ -96,7 +96,7 @@ class Master(StoppableThread):
 
                 self.logger.info("No more finished job to process")
 
-            sleep(60)  # Avoid CPU consuption while waiting
+            sleep(self.config["sleep"]["master"])  # Avoid CPU consuption while waiting
 
     def stop(self):
         self.logger.info("Master stopped")
@@ -141,6 +141,8 @@ class Slave(StoppableThread):
                 self.logger.debug("CommandQueueItem(jsondata=%s, ...)" % str(cmd_json))
                 cmd = CommandQueueItem(jsondata=cmd_json, logger=self.logger, config=self.config)
 
+                # Start the job after waiting sync between master and worker
+                sleep(self.config["sleep"]["job"])
                 status = cmd.execute()
 
                 # Job returned an error and has reached the limit of tries
@@ -156,7 +158,7 @@ class Slave(StoppableThread):
 
                 self.command_queue.push(cmd)
 
-            sleep(1)  # Avoid CPU consumption while waiting
+            sleep(self.config["sleep"]["worker"])  # Avoid CPU consumption while waiting
 
     def stop(self):
         self.logger.info("Slave stopped")

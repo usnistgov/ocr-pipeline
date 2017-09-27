@@ -10,7 +10,10 @@ dirs:
         learning: machine_learning
         inline: inline_correction
 log_conf: logging.yaml
-machines: machines.yaml
+sleep:
+  master: 60
+  worker: 5
+  job: 5
 commands:
    tries: 3
    list:
