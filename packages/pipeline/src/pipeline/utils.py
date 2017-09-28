@@ -16,7 +16,10 @@
 from hashlib import sha256
 from os import makedirs
 from os.path import join
+from random import choice
 from shutil import move
+from string import ascii_lowercase, digits
+from time import strftime, gmtime
 
 local_config = {
     "tmp_dir": "tmp",  # FIXME not used anymore
@@ -37,8 +40,12 @@ def create_data_directory(filename, tmp_dir):
     if not filename.endswith(".pdf"):
         return None
 
-    file_hash = sha256(open(filename).read()).hexdigest()
-    tmp_dir = join(tmp_dir, file_hash)
+    # Generate a unique directory name
+    file_hash = sha256(open(filename).read()).hexdigest()[0:12]
+    creation_time = strftime("%Y%m%d.%H%M%S", gmtime())
+    rand_str = ''.join(choice(ascii_lowercase + digits) for _ in range(6))
+
+    tmp_dir = join(tmp_dir, "%s.%s.%s" % (file_hash, creation_time, rand_str))
 
     # Creating main directory with the PDF inside
     makedirs(tmp_dir)
